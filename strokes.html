@@ -1,0 +1,37 @@
+<html>
+<body>
+<p>Press the keys p, n, l, k, i, a, e, o, BACKSPACE :) Press ENTER to update the strokes.</p>
+<input value = "pikpopnonlol   pik nenlen lel piknennel" id="inpt"></input>
+<svg id = "svg" height = 150 width = 150>
+<path stroke-linecap="round" id = "strokes" stroke="black" stroke-width="10" d="M0 10 L20 20"/>
+</svg>
+<script>
+var dict = { "p" : 10, "n" : 50, "l": 90, "k": 130 , "i": 0, "a": 20, "e": 40, "o": 60};
+var strokes = document.getElementById("strokes");
+function printstrokes(){
+var text = document.getElementById("inpt").value;
+var i = 0
+var p = 10
+var d = "";
+while(i < text.length){
+var c = text[i];
+console.log(c);
+if(c == "p" || c == "n" || c == "l" || c == "k"){
+d += "M"+p+" "+dict[c]+" L"+(p+dict[text[i+1]])+" "+dict[text[i+2]]+" ";
+i += 3;
+}
+else{
+i+=1;
+p+=20;
+}
+}
+strokes.setAttribute('d', d);
+document.getElementById("svg").setAttribute("width", p+100);
+}
+printstrokes();
+document.addEventListener("keydown", function(e){
+printstrokes();
+});
+</script>
+</body>
+</html>
